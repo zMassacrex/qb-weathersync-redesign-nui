@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Control</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container" id="mainContainer">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-icon">🌤️</div>
+            <div class="header-text">
+                <h1>CONTROL DE CLIMA</h1>
+                <p>Sistema de Gestión Atmosférica</p>
+            </div>
+            <button class="close-btn" id="closeBtn">✕</button>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab active" data-tab="weather">
+                <span class="tab-icon">☁️</span>
+                <span>Clima</span>
+            </button>
+            <button class="tab" data-tab="time">
+                <span class="tab-icon">🕐</span>
+                <span>Horario</span>
+            </button>
+            <button class="tab" data-tab="settings">
+                <span class="tab-icon">⚙️</span>
+                <span>Opciones</span>
+            </button>
+        </div>
+
+        <!-- Weather Tab -->
+        <div class="tab-content active" id="weather-tab">
+            <div class="section-title">
+                <span>☁️</span>
+                <span>Seleccionar Clima</span>
+            </div>
+            <div class="weather-grid" id="weatherGrid">
+                <!-- Weather items will be inserted by JS -->
+            </div>
+        </div>
+
+        <!-- Time Tab -->
+        <div class="tab-content" id="time-tab">
+            <div class="section-title">
+                <span>🕐</span>
+                <span>Control de Tiempo</span>
+            </div>
+            
+            <!-- Time Display -->
+            <div class="time-display">
+                <div class="time-value" id="timeDisplay">12:00</div>
+                <div class="time-label">Hora Actual del Servidor</div>
+            </div>
+
+            <!-- Time Slider -->
+            <div class="slider-container">
+                <div class="slider-labels">
+                    <span>00:00</span>
+                    <span>06:00</span>
+                    <span>12:00</span>
+                    <span>18:00</span>
+                    <span>23:59</span>
+                </div>
+                <input type="range" id="timeSlider" class="time-slider" min="0" max="1439" value="720">
+            </div>
+
+            <!-- Time Presets -->
+            <div class="time-presets">
+                <button class="preset-btn" data-hour="6" data-minute="0">
+                    <span class="preset-icon">🌅</span>
+                    <span>Amanecer</span>
+                    <small>06:00</small>
+                </button>
+                <button class="preset-btn" data-hour="9" data-minute="0">
+                    <span class="preset-icon">☀️</span>
+                    <span>Mañana</span>
+                    <small>09:00</small>
+                </button>
+                <button class="preset-btn" data-hour="12" data-minute="0">
+                    <span class="preset-icon">🌞</span>
+                    <span>Mediodía</span>
+                    <small>12:00</small>
+                </button>
+                <button class="preset-btn" data-hour="18" data-minute="0">
+                    <span class="preset-icon">🌆</span>
+                    <span>Atardecer</span>
+                    <small>18:00</small>
+                </button>
+                <button class="preset-btn" data-hour="21" data-minute="0">
+                    <span class="preset-icon">🌙</span>
+                    <span>Noche</span>
+                    <small>21:00</small>
+                </button>
+                <button class="preset-btn" data-hour="0" data-minute="0">
+                    <span class="preset-icon">🌑</span>
+                    <span>Medianoche</span>
+                    <small>00:00</small>
+                </button>
+            </div>
+
+            <!-- Apply Button -->
+            <button class="apply-btn" id="applyTimeBtn">
+                <span>✓ Aplicar Hora</span>
+            </button>
+        </div>
+
+        <!-- Settings Tab -->
+        <div class="tab-content" id="settings-tab">
+            <div class="section-title">
+                <span>⚙️</span>
+                <span>Opciones del Sistema</span>
+            </div>
+
+            <div class="toggle-list">
+                <div class="toggle-item">
+                    <div class="toggle-info">
+                        <span class="toggle-icon">⏸️</span>
+                        <div>
+                            <h4>Congelar Tiempo</h4>
+                            <p>Detiene el paso del tiempo en el servidor</p>
+                        </div>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="freezeTimeToggle">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="toggle-item">
+                    <div class="toggle-info">
+                        <span class="toggle-icon">🔄</span>
+                        <div>
+                            <h4>Clima Dinámico</h4>
+                            <p>El clima cambia automáticamente</p>
+                        </div>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="dynamicWeatherToggle">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="toggle-item">
+                    <div class="toggle-info">
+                        <span class="toggle-icon">💡</span>
+                        <div>
+                            <h4>Blackout</h4>
+                            <p>Apaga todas las luces de la ciudad</p>
+                        </div>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="blackoutToggle">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <button class="sync-btn" id="syncBtn">
+                <span>🔄 Sincronizar con Todos</span>
+            </button>
+        </div>
+
+        <!-- Footer Status -->
+        <div class="footer">
+            <div class="status-item">
+                <span>☁️</span>
+                <span id="currentWeatherStatus">CLEAR</span>
+            </div>
+            <div class="status-item">
+                <span>🕐</span>
+                <span id="currentTimeStatus">12:00</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
