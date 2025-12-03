@@ -19,6 +19,7 @@ Synced weather and time for QB-Core Framework :sunrise:
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 
+https://i.postimg.cc/J0XMZzYV/Screenshot-2025-12-03-171720.png
 
 ## Dependencies
 - [qb-core](https://github.com/qbcore-framework/qb-core)
